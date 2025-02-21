@@ -1,0 +1,122 @@
+What is Routing ?  
+= Routing is the process of determining which content or page should be displayed when a user navigates through a website. 
+Helps in handling different url's and showing the corret content accordingly. 
+
+Why is Routing Improtant?
+-Routing is essential because it allows users to move between different   sections or pages of a website smoothly. Without routing, everytime a user clicks a link, the entire page would reload, which can be slow and inefficient.
+
+enables faster user experiences because the browser doesn't need to request an entirely new document or re-evaluate CSS and JavaScript assets for the next page. It also enables more dynamic user experiences with things like animation.
+
+How is Routing Done? (Only Intro)
+Routing can be done in two main ways:
+
+Server-Side Routing – The server processes the request and sends a new page every time a user navigates.
+Client-Side Routing – The browser updates the page dynamically without reloading it from the server.
+
+=============================================================================
+
+Client Side routing ?
+
+-Client-side routing is when the browser changes the dispaly content without refreshing the page. 
+
+How It Works
+------------ 
+-Instead of requesting a new page from the server, React updates the content dynamicalyy. 
+
+-The url changes, but the page is updated instantly using Javascript. 
+-Data is fetched when needed (using fetch or Apis), instead of reloading the whole page. 
+=============================================================================
+
+
+How to create Client Side Routing
+---------------------------------- 
+
+Client side routing is enabled by creating a Router and linking/submitting to pages with Link and <Form>:
+
+install this  in you react app using this command:-
+npm install react-router-dom
+
+===========================================================
+
+ek page se dushre page hum log html me v ja saktey hai using this syntax.
+<a href="index.html">Go to Page 1</a>
+<a href="index2.html">Go to Page 2</a>
+If you use an <a href="page2.html">Go to Page 2</a> tag in React: ❌ It refreshes the entire page
+❌ Loses all state & data
+❌ Not a true SPA behavior
+
+=============================================================================
+
+Why Do We Need React Router?
+React is a Single Page Application (SPA) framework, meaning:
+
+It does not reload the page when navigating.
+Everything happens on one HTML file (index.html).
+Navigation must be handled without refreshing the browser.
+React Router enables client-side navigation, meaning: ✅ No full page reload
+
+
+These things can be also done with js but react router provides a structured and declarative way to handle routing in React application.
+In vanilla JS, you'd have to manually manipulate the DOM (document.querySelector, innerHTML), which is error-prone.
+
+React Router simplifies and optimizes it for React applications by making routing: ✅ Declarative
+✅ Component-driven
+✅ Scalable & maintainable
+✅ Easy to integrate with state & authentication
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+React as a library vs React Router as a framework
+------------------------------------------------- 
+
+1️⃣ React Router as a Library
+📌 Definition: A library provides specific functionality that can be added to an existing project without dictating the overall structure.
+
+✅ Key Characteristics:
+
+React Router is a standalone package (react-router-dom) that helps with client-side routing.
+You manually integrate it into your React project.
+You decide how to structure your routes and handle navigation.
+Here, React Router is just a tool to manage navigation, but the project structure is still fully controlled by the developer.
+
+🟢 Pros:
+✔️ More flexibility
+✔️ Can be used in any React project
+✔️ Lightweight
+
+🔴 Cons:
+❌ More manual setup
+❌ No built-in conventions
+
+
+
+2️⃣ React Router as a Framework
+------------------------------- 
+2️⃣ React Router as a Framework
+📌 Definition: A framework provides a more structured environment, guiding how an app is built and including routing as a core feature.
+
+✅ Key Characteristics:
+
+React Router is used as a foundational part of a framework like Remix.
+It provides opinionated structure, handling things like:
+File-based routing
+Server-side rendering (SSR) integration
+Data fetching with loaders and actions
+Navigation, route hierarchy, and data handling are deeply integrated.
+✅ Example (Remix with React Router as a Framework):
+
+In Remix, routing is handled automatically based on files.
+React Router is embedded into the framework’s data-fetching and rendering system.
+🟢 Pros:
+✔️ More structured and maintainable
+✔️ Optimized performance with SSR, loaders, and actions
+✔️ Better SEO support
+
+🔴 Cons:
+❌ Less flexibility
+❌ Requires learning framework-specific concepts
+
+Conclusion:
+If you just need routing in a React app → Use React Router as a Library (react-router-dom).
+If you want a structured framework with routing, SSR, and built-in data handling → Use Remix (React Router as a Framework
+
+=============================================================================

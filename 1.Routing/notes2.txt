@@ -1,0 +1,241 @@
+ 
+
+React comes without routing. we need reac-router library to enable it in our project. 
+npm install react-router-dom
+
+
+Step1: Setting up the router
+---------------------
+
+to enable routing, import BrowserRouter from react-router-dom.
+ IN App.js enter the following. 
+ Example:
+
+ import { BrowserRouter as Router,Link } from "react-router-dom";
+
+export default function App() {
+  return (
+  <Router>
+    <main>
+      <nav>
+        <ul>
+         <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+       </ul>
+      </nav>
+    </main>
+</Router>
+  );
+}
+
+Use ###Link### to navigate to routes:
+the Link component is similar to the anchor element () in HTML. Its to attribute specifies which path the link takes you to.
+
+This should hold everything in our app where routing is needed. That means, if we need routing in our entire app, we must wrap our higher component with BrowserRouter.
+=====-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+ 
+ 
+
+######## Note #######
+BrowserRouter ko hum main.js me v use kr saktey hai. tho hame App.jsx me use karne ki jarurat nhi parege. 
+import { BrowserRouter } from "react-router-dom";
+
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
+
+All we did was replace React.StrictMode with BrowserRouter which was imported from react-router-dom.
+=============================================================================
+Step 2 - Define routes
+---------------------- 
+
+import { Routes, Route } from "react-router-dom"
+
+<Routes>
+        <Route path="/" element={ <Home/> } />
+        <Route path="about" element={ <About/> } />
+        <Route path="contact" element={ <Contact/> } />
+</Routes>
+
+Home,About,Contacts are our functional component.
+
+We imported the features we'll be using – Routes and Route
+
+Routes- it acts as a parent/container for all the indivisual routes that 
+will be created in our app.
+
+Route is used  to create single route. It takes two attributes:
+-----
+
+#path:    it specifies the URL path of the desired component. 
+------    first path is a backslash (/). any component with backslash 
+          will get rendered first whenever the app loads for the first time.
+           Correct Usage:
+✅ Use path="about" (without /) inside a nested route.
+✅ Use path="/about" only for top-level routes.
+ye niyam ke bina v khi khi chal sakta hai.
+
+
+#element: specifies the component the route should render.
+---------
+
+=============================================================================
+
+Nested Route:  child component inside parent component.
+-------------
+
+  <Route path="/about" element={<About />}>
+            <Route path="details" element={<AboutDetails />} /> 
+  </Route>
+  <Route path="/contact" element={<Contact />}>
+            <Route path="info" element={<ContactInfo />} />
+  </Route>
+
+
+// About Page (Parent Route)
+const About = () => (
+  <Fragment>
+    <h2>About</h2>
+    <Link to="details">More Details</Link> 
+    <Outlet />  {/* This is where the nested route will render */}
+  </Fragment>
+);
+
+What is outlet in React Render?
+-------------------------------
+= <Outlet/> is a placeholder in a parent route where the nested routes will be rendered.
+= without it nested component will not be displayed inside their parent.
+= chahe jitna v children route ho outlet ek hi hoga nhi tho react confuse ho jayegega ki 
+=============================================================================
+
+Layout Routes:  used to wrap multiple pages inside a commnon layout.
+--------------  helps in reusing UI components like Navbar, sideBar, footer  
+                accross different routes.
+
+                ########### not clear.#### do again.
+
+Index Routes:
+------------- 
+Index routes render into their parent's <Outlet/> at their parent's URL (like a default child route). They are configured with the index prop:
+
+
+Example: With index.
+-------------------
+ <Routes>
+  <Route path="dashboard">
+    <Route index element={<DashboardHome />} />
+    <Route path="settings" element={<Settings />} />
+  </Route>
+</Routes>
+
+
+
+Example: Without index 
+----------------------
+
+<Route path="dashboard">
+  <Route path="" element={<DashboardHome />} />  // Works, but `index` is cleaner
+  <Route path="settings" element={<Settings />} />
+</Route>
+=========================================================================
+Note that index routes can't have children. If you're expecting that behavior, you probably want a layout route.
+Only one index route is allowed per parent route, and React Router will only pick the first one it encounters (which is <Home />> in your case).
+
+Route Prefixes
+--------------
+A <Route path> without an element prop adds a path prefix to its child routes, without introducing a parent layout.
+
+<Route path="projects">
+  <Route index element={<ProjectsHome />} />
+  <Route element={<ProjectsLayout />}>
+    <Route path=":pid" element={<Project />} />
+    <Route path=":pid/edit" element={<EditProject />} />
+  </Route>
+</Route>
+=============================================================================
+Dynamics Segments:
+----------------- 
+ What is a Dynamic Segment in React Router?
+ It is a part of url that can change and represent different values.
+ Often used for dynamic routes, like user profile, product details, or blog post.
+
+ For example, instead of creating separate routes like:
+✅ /user/john
+✅ /user/alice
+✅ /user/sam
+
+We can define a single dynamic route:
+✅ /user/:username
+
+Here, :username is a dynamic segment that changes based on the URL.
+
+
+example: 
+
+  <li> <Link to="/user/abhishek">Abhishek's Profile</Link></li>
+  <li ><Link to="/user/john">John's Profile</Link></li>
+
+  <Route path="/user/:username" element={<UserProfile/>}/>
+
+  const UserProfile = () => {
+  let { username } = useParams(); // Get dynamic segment from URL
+  return (
+    <section className="profile-section">
+      <h2>Welcome, {username}!</h2>
+      <p>This is the profile page of {username}.</p>
+    </section>
+   );
+   };
+
+=============================================================================
+ 
+
+
+
+ Optional Segments 
+-------------------
+
+An optional segment in React Router means that a part of the URL path is not mandatory. If it's present, the component should handle it, and if it's missing, the component should still work without errors.
+
+How to Use an Optional Segment?
+1.A Route with a Parameter (:param?)
+2.A Default Value for Missing Parameters
+
+
+
+ 
+
+
+Splats
+------- 
+
+
+Left 
+
+
+
+Linking:
+--------
+Link to routes form your UI with Link and Navlink.
+
+import {NavLink, Link} from "react-router";
+function Header()
+{
+  return(
+     {/* NavLink makes it easy to show active states */}
+     <NavLink
+     to="/" 
+     className={({isActive})=>
+     isActive ? "active":""
+     }
+     >
+     Home
+     </Navlink
+     }
+  );
+}
