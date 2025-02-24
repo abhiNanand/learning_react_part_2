@@ -1,0 +1,86 @@
+Navigation is done with <Link>, <NavLink>, and useNavigate.
+
+NavLink:
+
+
+
+             <ul>
+                <li>
+                    <NavLink to="/">Home</NavLink>
+                </li>
+                <li>
+                    <NavLink to="service">Services
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="about">About</NavLink>
+                </li>
+            </ul>
+
+The `<NavLink>` component by default has an active class which can be styled to indicate which component or page is active.
+
+a.active{
+    color:aqua;
+}
+
+jo active state hoga uska color aqua ho jayega.
+=============================================================================
+3. Using className as a Function (Dynamic Styling)
+You can conditionally style the link using the className prop;
+
+<NavLink 
+to="/" className={({isActive}) => (isActive? "active-link": "inactive-link")}>
+Home
+</NavLink>
+
+in css do. 
+
+.active-link {
+    color: green;
+    font-weight: bold;
+}
+
+.inactive-link {
+    color: black;
+}
+=============================================================================
+Using end to Avoid Partial Matching
+By default, NavLink remains active if the URL starts with the given to path. To prevent this:
+
+jsx
+Copy
+Edit
+<NavLink to="/" end>Home</NavLink>
+🔹 This ensures Home is only active on the exact / path.
+
+============================================================================
+End keyword
+-----------
+Without end, the "Home" link stays active on every page because / is a prefix of all routes.
+With end, the "Home" link is active only when the user is exactly on /.
+===========================================================================
+
+UseNavigate Hook: use to navigate user to different pages.
+-----------------
+
+This is useful in scenarios where navigation should happen without user interaction, such as after a successful form submission, automatic logout, or a timed event.
+
+
+import {useNavigate} from 'react-router-dom';
+
+export function LoginPage() {
+  let navigate = useNavigate();
+}
+returns a navigate function.
+
+
+When to Use useNavigate?
+After form submission: As seen in the example, after a successful login, the user is redirected.
+Auto logout: If a user is inactive for a long time, you can navigate them to the login page.
+Timed UI events: In a quiz, if the timer ends, you can navigate the user to a result page.
+
+
+When to Prefer <Link> or <NavLink>?
+If the navigation is triggered by a user clicking a link, it's better to use <Link> or <NavLink> because they provide better accessibility and browser features (like right-click context menu, opening in a new tab, etc.).
+
+==========================================================================

@@ -1,0 +1,15 @@
+Public route are accessible to all user but private routes require authentication (like login);
+
+Public Route: 
+-------------
+
+A public route can be accessed by any user, whether they are logged in or not. Examples:
+-Login Page
+-Signup Page
+-Home Page
+
+
+Example of a Public Route:
+-------------------------- 
+
+A private route is only accessible to authenticated (logged-in) users. If the user is not logged in, they will be redirected to the login page.

@@ -3,8 +3,11 @@ import "./index.css"
 import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 
 // export default function App() {
+   
 //   return (
+    
 //   <Router>
+  
 //     <main>
 //       <nav>
 //         <ul>
@@ -27,7 +30,7 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 //   );
 // }
 
-// // Home Page
+// Home Page
 // const Home = () => (
 //     <Fragment>
 //       <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
@@ -220,42 +223,126 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 
 
  //Dynamic Segment
- import {useParams} from 'react-router-dom'
- export default function App() {
-  return (<Router>
-    <main>
-      <nav>
-        <ul>
-          <li><Link to='/'>Home</Link></li> 
-          <li><Link to='about'>About</Link></li>
-          <li><Link to='contact'>Contact</Link></li>
-          <li> <Link to="/user/abhishek">Abhishek's Profile</Link></li>
-          <li ><Link to="/user/john">John's Profile</Link></li>
-        </ul>
-      </nav>
+  import {useParams} from 'react-router-dom'
+//  export default function App() {
+//   return (<Router>
+//     <main>
+//       <nav>
+//         <ul>
+//           <li><Link to='/'>Home</Link></li> 
+//           <li><Link to='about'>About</Link></li>
+//           <li><Link to='contact'>Contact</Link></li>
+//           <li> <Link to="/user/abhishek">Abhishek's Profile</Link></li>
+//           <li ><Link to="/user/john">John's Profile</Link></li>
+//         </ul>
+//       </nav>
 
-{/*Routes Wrapper */}
-<Routes>
-  <Route path='/' element={<Home/>}/>
-  <Route path='/about' element={<About/>}/>
-  <Route path="/contact" element={<Contact />} />
-  <Route path="/user/:username" element={<UserProfile/>}/>
-</Routes>
+// {/*Routes Wrapper */}
+// <Routes>
+//   <Route path='/' element={<Home/>}/>
+//   <Route path='/about' element={<About/>}/>
+//   <Route path="/contact" element={<Contact />} />
+//   <Route path="/user/:username" element={<UserProfile/>}/>
+// </Routes>
 
 
-    </main>
-  </Router>);}
+//     </main>
+//   </Router>);}
  
- const Home = () => <h2>Home Page</h2>;
- const About = () => <h2>About Us</h2>;
- const Contact = () => <h2>Contact Us</h2>;
+//  const Home = () => <h2>Home Page</h2>;
+//  const About = () => <h2>About Us</h2>;
+//  const Contact = () => <h2>Contact Us</h2>;
  
- const UserProfile = () => {
-  let { username } = useParams(); // Get dynamic segment from URL
-  return (
-    <section className="profile-section">
-      <h2>Welcome, {username}!</h2>
-      <p>This is the profile page of {username}.</p>
-    </section>
-  );
-};
+//  const UserProfile = () => {
+//   let { username } = useParams(); // Get dynamic segment from URL
+//   return (
+//     <section className="profile-section">
+//       <h2>Welcome, {username}!</h2>
+//       <p>This is the profile page of {username}.</p>
+//     </section>
+//   );
+// };
+
+
+//optional chaining.
+// export default function App() {
+//   return (
+//     <Router>
+//       <main>
+//         <nav>
+//           <ul>
+//             <li><Link to="/">Home</Link></li>
+//             <li><Link to="/about">About</Link></li>
+//             <li><Link to="/contact">Contact</Link></li>
+//           </ul>
+//         </nav>
+
+//         {/* Routes */}
+//         <Routes>
+//           <Route path="/" element={<Home />} />
+//           <Route path="/about" element={<About />} />
+//           <Route path="/about/:id" element={<AboutDetails />} />
+//           <Route path="/contact" element={<Contact />} />
+//           <Route path="/contact/:id" element={<ContactInfo />} />
+//         </Routes>
+//       </main>
+//     </Router>
+//   );
+// }
+
+// // Home Component
+// const Home = () => <h2>Home Page</h2>;
+
+// // About Component
+// const About = () => <h2>About Us</h2>;
+
+// // AboutDetails Component (Fixed)
+// const AboutDetails = () => {
+//   const { id } = useParams();
+//   return <h2>About Details: {id ? id.toUpperCase() : "No ID Provided"}</h2>;
+// };
+
+// // Contact Component
+// const Contact = () => <h2>Contact Us</h2>;
+
+// // ContactInfo Component (Fixed)
+// const ContactInfo = () => {
+//   const { id } = useParams();
+//   return <h2>Contact Info: {id ? id.toUpperCase() : "No ID Provided"}</h2>;
+// };
+
+//splats
+// export default function App() {
+//   return (
+//     <Router>
+//       <main>
+//         <nav>
+//           <ul>
+//             <li><Link to="/">Home</Link></li>
+//             <li><Link to="/files/documents/report.pdf">View File</Link></li>
+//             <li><Link to="/files/picture/img1.jpg">View Picture</Link></li>
+//           </ul>
+//         </nav>
+
+//         <Routes>
+//           <Route path="/" element={<Home />} />
+//           <Route path="files/*" element={<FileViewer />} />
+//         </Routes>
+//       </main>
+//     </Router>
+//   );
+// }
+
+// // Home Component
+// const Home = () => <h2>Home Page</h2>;
+
+// // FileViewer Component (Using Splats)
+// const FileViewer = () => {
+//   let { "*": filePath } = useParams();
+//   return <h2>Viewing File: {filePath || "No file selected"}</h2>;
+// };
+
+export default function App()
+{
+  return <h1>hi</h1>;
+}

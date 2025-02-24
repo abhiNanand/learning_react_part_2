@@ -209,33 +209,41 @@ How to Use an Optional Segment?
 
 
  
+============================================================================
+
+Splats: also called catch-all or star segments are used when a route should 
+------- match anythings after a certain path, including / character.
+
+How Splats Works 
+---------------- 
+1. route pattern ends with /*,capture everythings after that.
+2. captured value is stored in useParams() under the key "*".(or any custom name you assign).
+3. This is useful for dynamic paths, such as file structure, wildcard routes, or fallback handling. 
+
+<li><Link to="/files/documents/report.pdf">View File</Link></li>
+<li><Link to="/files/picture/img1.jpg">View Picture</Link></li>
+
+<Route path="files/*" element={<FileViewer />} /> 
+
+const FileViewer = () => {
+  let { "*": filePath } = useParams();
+  return <h2>Viewing File: {filePath || "No file selected"}</h2>;
+};
 
 
-Splats
-------- 
-
-
-Left 
-
+=============================================================================
 
 
 Linking:
 --------
-Link to routes form your UI with Link and Navlink.
+ 
+Link: done 
 
-import {NavLink, Link} from "react-router";
-function Header()
-{
-  return(
-     {/* NavLink makes it easy to show active states */}
-     <NavLink
-     to="/" 
-     className={({isActive})=>
-     isActive ? "active":""
-     }
-     >
-     Home
-     </Navlink
-     }
-  );
-}
+NavLink:  
+Left not understand
+
+Active State in Navlink means that a link is currently pointing to the same page that user is on.
+
+In simple terms:
+👉 If a NavLink matches the current URL, it becomes active.
+=============================================================================

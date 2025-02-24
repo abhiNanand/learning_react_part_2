@@ -1,0 +1,13 @@
+
+Passing data from parent to children component and from children to their children component and so on  until data reaches to the desired component that needs it. 
+
+Prop drilling can be a necessary and effective way to manage application state, it can also become a problem when the hierarchy of components becomes too deep or complex. 
+
+
+his can lead to several issues. Let's say, code duplication, increased cognitive load and decreased maintainability..
+
+
+What are Props in React?
+Props (aka "Properties") are inputs to components. They are single values or objects containing a set of values that are passed to components on creation similar to HTML tag attributes. 
+
+Props are read-only, meaning that they cannot be modified by the component itself.

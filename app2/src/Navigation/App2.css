@@ -1,0 +1,14 @@
+/* .active{
+    color:aqua;
+   
+} */
+
+.active-link
+{
+    color:rgb(70, 219, 33)
+}
+
+.inactive-link
+{
+    color:goldenrod
+}
