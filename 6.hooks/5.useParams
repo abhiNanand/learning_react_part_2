@@ -1,0 +1,8 @@
+UseParams: allows us to access dynamic parameters from the URL. useful with working with dynamic routes. 
+
+How useParams works:
+
+-returns an object containing key-value pair,where keys corresponds to     dynamic parameters in the route path. 
+- This is useful when defining routes with dynamic segments(e.g.,:userId).
+- Child routes inherit all parameters from their parent routes.
+

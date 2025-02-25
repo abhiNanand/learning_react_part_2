@@ -33,9 +33,6 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 // Home Page
 // const Home = () => (
 //     <Fragment>
-//       <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-//         Google
-//       </a>
 //       <Welcome />
 //     </Fragment>
 //   );

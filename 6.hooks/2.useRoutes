@@ -1,0 +1,29 @@
+
+
+useRoute: equivalent to <Route>, but it uses Javascript Object instead of <Route> element to define your routes. They don't require JSX.
+
+import * as React from "react";
+import { useRoutes } from "react-router-dom";
+
+function App()
+{
+    let element = useRoutes([
+        {
+        path:"/",
+        element:<Dashboard/>,
+
+        children:[
+            {
+                path:"message",
+                element:<DashboardMessage/>,
+            },
+            {
+                 path:"tasks",
+                 element:<DashboardTasks/>
+            },
+                ],
+        },
+        
+    {path:"team",element:<"AboutPage/>},
+    ]);
+}
