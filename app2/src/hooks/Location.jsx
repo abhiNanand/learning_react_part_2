@@ -82,46 +82,46 @@
 
 
 //use Pramas 1.
-// import React from "react";
-// import { BrowserRouter as Router, Routes, Route, useParams, Link } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, useParams, Link } from "react-router-dom";
 
-// function ProfilePage()
-// {
-//     let {userId} = useParams();
-//     console.log(useParams());
+function ProfilePage()
+{
+    let {userId} = useParams();
+    console.log(useParams());
    
-//     return (
-//         <div>
-//             <h2>User Profile</h2>
-//             <p>User Id:{userId}</p>
-//             <Link to="/">Go Back</Link>
-//         </div>
-//     );
-// }
+    return (
+        <div>
+            <h2>User Profile</h2>
+            <p>User Id:{userId}</p>
+            <Link to="/">Go Back</Link>
+        </div>
+    );
+}
 
-// function Home()
-// {
-//     return(
-//         <div>
-//             <h1>Home Page</h1>
-//             <p>Click a user to view their profile</p>
-//             <ul>
-//         <li><Link to="/users/101">User 101</Link></li>
-//         <li><Link to="/users/202">User 202</Link></li>
-//         <li><Link to="/users/303">User 303</Link></li>
-//             </ul>
-//         </div>
-//     )
-// }
+function Home()
+{
+    return(
+        <div>
+            <h1>Home Page</h1>
+            <p>Click a user to view their profile</p>
+            <ul>
+        <li><Link to="/users/101">User 101</Link></li>
+        <li><Link to="/users/202">User 202</Link></li>
+        <li><Link to="/users/303">User 303</Link></li>
+            </ul>
+        </div>
+    )
+}
 
-// export default function App4()
-// {
-//     return (
-//         <Router>
-//           <Routes>
-//             <Route path="/" element={<Home/>} />
-//             <Route path="users/:userId" element={<ProfilePage />} />
-//           </Routes>
-//         </Router>
-//       );
-// }
+export default function App4()
+{
+    return (
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="users/:userId" element={<ProfilePage />} />
+          </Routes>
+        </Router>
+      );
+}

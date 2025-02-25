@@ -170,6 +170,7 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 //   </div>
 // );
 
+//---------------------------------------------------------------------------
 //3 Layout Routes.
 
  
@@ -214,8 +215,7 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 
 //route prefix
 
-// ✅ Page Components
- //===========================================================================
+ //==========================================================================
 
 
 
@@ -260,6 +260,7 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 //   );
 // };
 
+//===========================================================================
 
 //optional chaining.
 // export default function App() {
@@ -299,6 +300,7 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 //   return <h2>About Details: {id ? id.toUpperCase() : "No ID Provided"}</h2>;
 // };
 
+ 
 // // Contact Component
 // const Contact = () => <h2>Contact Us</h2>;
 
@@ -308,38 +310,41 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 //   return <h2>Contact Info: {id ? id.toUpperCase() : "No ID Provided"}</h2>;
 // };
 
-//splats
-// export default function App() {
-//   return (
-//     <Router>
-//       <main>
-//         <nav>
-//           <ul>
-//             <li><Link to="/">Home</Link></li>
-//             <li><Link to="/files/documents/report.pdf">View File</Link></li>
-//             <li><Link to="/files/picture/img1.jpg">View Picture</Link></li>
-//           </ul>
-//         </nav>
+//===========================================================================
 
-//         <Routes>
-//           <Route path="/" element={<Home />} />
-//           <Route path="files/*" element={<FileViewer />} />
-//         </Routes>
-//       </main>
-//     </Router>
-//   );
+//splats
+export default function App() {
+  return (
+    <Router>
+      <main>
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/files/documents/report.pdf">View File</Link></li>
+            <li><Link to="/files/picture/img1.jpg">View Picture</Link></li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="files/*" element={<FileViewer />} />
+        </Routes>
+      </main>
+    </Router>
+  );
+}
+
+// Home Component
+const Home = () => <h2>Home Page</h2>;
+
+// FileViewer Component (Using Splats)
+const FileViewer = () => {
+  let { "*": filePath } = useParams();
+  return <h2>Viewing File: {filePath || "No file selected"}</h2>;
+};
+
+// export default function App()
+// {
+//   return <h1>hi</h1>;
 // }
 
-// // Home Component
-// const Home = () => <h2>Home Page</h2>;
-
-// // FileViewer Component (Using Splats)
-// const FileViewer = () => {
-//   let { "*": filePath } = useParams();
-//   return <h2>Viewing File: {filePath || "No file selected"}</h2>;
-// };
-
-export default function App()
-{
-  return <h1>hi</h1>;
-}
+//Error handling. 
