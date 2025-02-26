@@ -1,7 +1,43 @@
 import React, { Fragment } from "react";
 import "./index.css"
-import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
+import { BrowserRouter as Router,Routes,Link, Route,Outlet,useSearchParams } from "react-router-dom";
 
+
+//===========================================================================
+
+
+// example. 
+ 
+
+
+//=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ 
+
+// export default function App() {
+//   return (
+//     <Router>
+//       <nav>
+//         <Link to="/">Home</Link> | <Link to="/about">About</Link> |
+//         <Link to="/contact">Contact</Link>
+//       </nav>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/about" element={<About />} />
+//         <Route path="/contact" element={<Contact />} />
+//         <Route path="login" element={<Login />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// // ✅ Page Components
+// const Home = () => <h2>Home Page</h2>;
+// const About = () => <h2>About Us</h2>;
+// const Contact = () => <h2>Contact Us</h2>;
+// const Login = () => <h2>Login Page (No Layout)</h2>;
+
+
+//===========================================================================
 // export default function App() {
    
 //   return (
@@ -85,12 +121,12 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 //     );
 //   };
   
-
+//---------------------------------------------------------------------------
 
 // 2.   Nested Routes
 
 
- import {Outlet} from "react-router-dom" ;
+//  import {Outlet} from "react-router-dom" ;
 
 // export default function App() {
 //   return (
@@ -169,8 +205,87 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 //     </header>
 //   </div>
 // );
+//---------------------------------------------------------------------------
+//
+//nested route example 2.
+// export default function App() {
+//   return (
+//     <Router>
+//       <nav>
+//         <Link to="/">Home</Link> | <Link to="/about">About</Link> |
+//         <Link to="/about/contact">Contact</Link>
+//      {/*contact jo hai vo nested route hai thats why  /about/contact*/}
+//       </nav>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/about" element={<About />} >
+        
+//         <Route path="contact" element={<Contact />} />
+       
+//         </Route>
+       
+//         <Route path="login" element={<Login />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// // ✅ Page Components
+// const Home = () => <h2>Home Page</h2>;
+// const About = () => {
+  
+//   return(
+//     <>
+//       <h2>About Us</h2>
+//       <Link to="contact">Contact</Link>  
+//       <Outlet/>
+//     </>
+
+//   );
+
+// }
+// const Contact = () => <h2>Contact Us</h2>;
+// const Login = () => <h2>Login Page (No Layout)</h2>;
+
 
 //---------------------------------------------------------------------------
+
+//index example.
+// export default function App() {
+//   return (
+//     <Router>
+//       <nav>
+//         <Link to="/">Home</Link> | <Link to="/about">About</Link> |
+//         <Link to="/about/contact">Contact</Link>
+//      {/*contact jo hai vo nested route hai thats why  /about/contact*/}
+//       </nav>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/about" element={<About />} >
+//            <Route index element={<h3>Automatically route</h3>}/>
+//            <Route path="contact" element={<Contact />} />     
+//         </Route>      
+//         <Route path="login" element={<Login />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+// // ✅ Page Components
+// const Home = () => <h2>Home Page</h2>;
+// const About = () => {
+//   return(
+//     <>
+//       <h2>About Us</h2>
+//       <Link to="contact">Contact</Link>  
+//       <Outlet/>
+//     </>
+//   );
+// }
+// const Contact = () => <h2>Contact Us</h2>;
+// const Login = () => <h2>Login Page (No Layout)</h2>;
+//---------------------------------------------------------------------------
+
+
 //3 Layout Routes.
 
  
@@ -313,35 +428,87 @@ import { BrowserRouter as Router,Routes,Link, Route } from "react-router-dom";
 //===========================================================================
 
 //splats
-export default function App() {
-  return (
-    <Router>
-      <main>
-        <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/files/documents/report.pdf">View File</Link></li>
-            <li><Link to="/files/picture/img1.jpg">View Picture</Link></li>
-          </ul>
-        </nav>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="files/*" element={<FileViewer />} />
-        </Routes>
-      </main>
-    </Router>
-  );
-}
+// export default function App() {
+//   return (
+//     <Router>
+//       <main>
+//         <nav>
+//           <ul>
+//             <li><Link to="/">Home</Link></li>
+//             <li><Link to="/files/documents/report.pdf">View File</Link></li>
+//             <li><Link to="/files/picture/img1.jpg">View Picture</Link></li>
+//           </ul>
+//         </nav>
+//         <Routes>
+//           <Route path="/" element={<Home />} />
+//           <Route path="files/*" element={<FileViewer />} />
+//         </Routes>
+//       </main>
+//     </Router>
+//   );
+// }
 
-// Home Component
-const Home = () => <h2>Home Page</h2>;
+// // Home Component
+// const Home = () => <h2>Home Page</h2>;
 
-// FileViewer Component (Using Splats)
-const FileViewer = () => {
-  let { "*": filePath } = useParams();
-  return <h2>Viewing File: {filePath || "No file selected"}</h2>;
-};
+// // FileViewer Component (Using Splats)
+// const FileViewer = () => {
+//   let { "*": filePath } = useParams();
+//   return <h2>Viewing File: {filePath || "No file selected"}</h2>;
+// };
+// //===========================================================================
+// export default function App() {
+//   return (
+//     <Router>
+//       <nav>
+//         <Link to="/">Home</Link> | <Link to="/about">About</Link> | 
+//         <Link to="/contact">Contact</Link> | 
+//         <Link to="/en/categories">Categories (English)</Link> | 
+//         <Link to="/categories">Categories (Default)</Link> |
+//         <Link to="/users/123">User Profile</Link> |
+//         <Link to="/users/123/edit">Edit User</Link>
+//       </nav>
 
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/about" element={<About />} />
+//         <Route path="/contact" element={<Contact />} />
+//         <Route path="login" element={<Login />} />
+
+//         {/* Optional Route Segment for Language */}
+//         <Route path=":lang?/categories" element={<Categories />} />
+
+//         {/* Optional Static Segment "edit" */}
+//         <Route path="users/:userId/edit?" element={<User />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// // ✅ Page Components
+// const Home = () => <h2>Home Page</h2>;
+// const About = () => <h2>About Us</h2>;
+// const Contact = () => <h2>Contact Us</h2>;
+// const Login = () => <h2>Login Page (No Layout)</h2>;
+
+// // ✅ Categories Component (Handles Optional Language)
+// const Categories = () => {
+//   const { lang } = useParams();
+//   return <h2>Categories Page {lang ? `in ${lang.toUpperCase()}` : "(Default Language)"}</h2>;
+// };
+
+// // ✅ User Component (Handles Optional "edit" Segment)
+// const User = () => {
+//   const { userId } = useParams();
+//   const path = window.location.pathname; // Get current path
+
+//   return (
+//     <h2>
+//       {path.includes("edit") ? `Editing User ${userId}` : `User Profile: ${userId}`}
+//     </h2>
+//   );
+// };
+//===========================================================================
 // export default function App()
 // {
 //   return <h1>hi</h1>;

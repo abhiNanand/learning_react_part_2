@@ -9,6 +9,6 @@ import App5 from './ErrorHandling/App5.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App5/>
+    <App/>
   </StrictMode>,
 )

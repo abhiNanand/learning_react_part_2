@@ -1,0 +1,29 @@
+Nested Routes: Parent & Child Paths
+# When using nested routes, the child routes should not start with / because they inherit the parent path.
+
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route path="settings" element={<Settings />} />
+</Route>
+
+
+The full path for Settings will be /dashboard/settings.
+If you mistakenly write <Route path="/settings" ... />, it will not be a child of /dashboard but instead become a separate top-level route (/settings).
+
+=============================================================================
+
+1. With / (Absolute Path)
+When you start a path with /, it means that the path is absolute and should match exactly from the root.
+<Route path="/about" element={<About />} />
+This route matches only when the URL is exactly /about.
+If the URL is /home/about, it won't match.
+
+
+=============================================================================
+
+2. Without / (Relative Path)
+If you do not start the path with /, the path is treated as relative to the parent route.
+<Route path="profile" element={<Profile />} />
+This will be matched relative to the parent route.
+If the parent route is /dashboard, the full path will be /dashboard/profile.
+
+=============================================================================

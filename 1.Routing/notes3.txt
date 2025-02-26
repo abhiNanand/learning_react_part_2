@@ -1,0 +1,158 @@
+Miscellaneous
+------------- 
+
+Passing multiple user Information using with dynamic routing. 
+
+import{
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useParams,
+} from "react-router-dom";
+import { useEffect, useState } from "react";
+
+export default function App() {
+  return (
+    <Router>
+      <main>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+            <li>
+              <Link to="/user/abhishek">Abhishek's Profile</Link>
+            </li>
+            <li>
+              <Link to="/user/john">John's Profile</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Routes Wrapper */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/user/:username/*" element={<UserProfile />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+    </Router>
+  );
+}
+
+// Static Pages
+const Home = () => <h2>Home Page</h2>;
+const About = () => <h2>About Us</h2>;
+const Contact = () => <h2>Contact Us</h2>;
+const NotFound = () => <h2>404 - Page Not Found</h2>;
+
+// Simulated User Data
+const users = {
+  abhishek: {
+    name: "Abhishek",
+    age: 25,
+    city: "Delhi",
+    email: "abhishek@example.com",
+  },
+  john: { name: "John", age: 30, city: "New York", email: "john@example.com" },
+};
+
+// User Profile Component
+const UserProfile = () => {
+  let { username } = useParams();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Simulating API fetch (replace this with actual API call)
+    setTimeout(() => {
+      setUser(users[username]);
+    }, 500);
+  }, [username]);
+
+  return user ? (
+    <section className="profile-section">
+      <h2>Welcome, {user.name}!</h2>
+      <p>Age: {user.age}</p>
+      <p>City: {user.city}</p>
+      <p>Email: {user.email}</p>
+
+      {/* Nested Navigation */}
+      <nav>
+        <Link to="details">Details</Link> | <Link to="posts">Posts</Link>
+      </nav>
+
+      {/* Nested Routes */}
+      <Routes>
+        <Route path="details" element={<UserDetails user={user} />} />
+        <Route path="posts" element={<UserPosts username={username} />} />
+      </Routes>
+    </section>
+  ) : (
+    <h2>User Not Found</h2>
+  );
+};
+
+// User Details Component
+const UserDetails = ({ user }) => (
+  <div>
+    <h3>User Details</h3>
+    <p>Name: {user.name}</p>
+    <p>Age: {user.age}</p>
+    <p>City: {user.city}</p>
+    <p>Email: {user.email}</p>
+  </div>
+);
+
+// User Posts Component (Dummy Data)
+const UserPosts = ({ username }) => {
+  const posts = {
+    abhishek: ["Learning React", "JavaScript Tips", "Working with Redux"],
+    john: ["React Router Guide", "Using Hooks", "Advanced TypeScript"],
+  };
+
+  return (
+    <div>
+      <h3>{username}'s Posts</h3>
+      <ul>
+        {posts[username]?.map((post, index) => <li key={index}>{post}</li>) || (
+          <p>No Posts Available</p>
+        )}
+      </ul>
+    </div>
+  );
+};
+}
+
+=============================================================================
+
+Why Use Dynamic Routing Instead of Passing Props?
+
+1️⃣ Refresh Issue
+
+-Problem: The URL doesn’t change. Refreshing will lose the data.
+-With dynamic routing, the page still works because the URL stores the needed info.
+
+2️⃣ Sharing Links
+
+-With props, you can't share a link to a specific page (e.g., a product page).
+-With dynamic routing (/product/123), anyone can open that link and see the correct product.
+
+4️⃣ Back & Forward Buttons
+
+-Dynamic routing allows users to go back and forward easily using the browser.
+-With props, you’d have to manually handle navigation.
+
+=============================================================================
+
+What is ? in routing?

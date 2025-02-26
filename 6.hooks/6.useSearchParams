@@ -1,0 +1,59 @@
+useSearchParams ek React Hook hai jo react-router-dom library ka part hai. Yeh query parameters ko handle karne ke liye use hota hai, jo URL ke ?key=value format mein hote hain
+e.g: 
+
+/products?category=electronics&sort=price
+
+
+
+
+ ish code me jb about pr click karenge tho age and city ka value show nhi hoga. 
+ hum agar url me change karenge tho show hoga
+
+ about pr click kareney pr ye show hoga http://localhost:5173/about 
+manually showing age- http://localhost:5173/about?age=30
+showing city name-  http://localhost:5173/about?age=30&city=hajipur
+
+we can do this using button also:
+
+export default function App() {
+  return (
+    <Router>
+      <nav>
+        <Link to="/">Home</Link> | <Link to="/about">About</Link> |
+        <Link to="/contact">Contact</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+       
+      </Routes>
+    </Router>
+  );
+}
+
+// ✅ Page Components
+const Home = () => <h2>Home Page</h2>;
+const About = () => {
+  const [searchParams , setSearchParams] = useSearchParams();
+  const age=searchParams.get('age');
+  const city=searchParams.get('city');
+return(
+<>
+<h2>About Us</h2>
+<h3>Age is:{age}</h3>
+<h3>City is:{city}</h3>
+<button onClick=()=>setSearchParams({age:40})>Set Age</button>
+</>
+);
+};
+const Contact = () => <h2>Contact Us</h2>;
+=============================================================================
+
+Query Parameters Kya Hote Hain?
+-Query parameters URL ke andar additional data pass karne ka ek tarika hote hain.
+-Yeh ?key=value format mein likhe jate hain aur & se multiple parameters ko separate kiya jata hai.
+
+Query Parameters Ko Read Karna
+Agar tumhe JavaScript mein query parameters read karne hain, toh URLSearchParams ka use hota hai:
+=============================================================================
